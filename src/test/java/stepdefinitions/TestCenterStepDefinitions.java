@@ -7,8 +7,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.TestCenterPage;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.selected;
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class TestCenterStepDefinitions {
  TestCenterPage testCenterPage = new TestCenterPage();
@@ -55,6 +59,53 @@ testCenterPage.kullaniciSifresi.setValue("SuperSecretPassword");
             testCenterPage.football.click();
             testCenterPage.football.shouldBe(selected);
         }
+
+    }
+
+    @And("kullanici yil olarak {int}, ay olarak {string}, gun olarak {int}")
+    public void kullaniciYilOlarakAyOlarakGunOlarak(int yil, String ay, int gun) {
+        testCenterPage.yil.selectOption(23);
+        sleep(3000);
+        testCenterPage.ay.selectOption(ay);
+        sleep(3000);
+        testCenterPage.gun.selectOptionByValue(String.valueOf(gun));
+    }
+
+    //ALERT STEP DEFS
+    @And("alert promt butonuna tiklar")
+    public void alertPromtButonunaTiklar() {
+       testCenterPage.promptButton.click();
+    }
+
+    @And("kullanici alerte {string} teni yazar ve OK e tiklar")
+    public void kullaniciAlerteTeniYazarVeOKETiklar(String arg0) {
+      switchTo().alert().sendKeys(arg0);
+      sleep(3000);
+      switchTo().alert().accept();
+      sleep(3000);
+    }
+
+    @Then("kullanici sonucun {string} icerdigini dogrular")
+    public void kullaniciSonucunIcerdiginiDogrular(String arg0) {
+        testCenterPage.sonuc.shouldHave(text(arg0));
+    }
+
+    //iframe test steps
+    @And("switch to frame {int}")
+    public void switchToFrame(int frame) {
+        switchTo().frame(frame-1);
+    }
+
+    @And("kullanic backl to techproeducation.com linkine tiklar")
+    public void kullanicBacklToTechproeducationComLinkineTiklar() {
+        testCenterPage.backButton.click();
+        System.out.println("sayfa url: "+url());
+    }
+
+    @And("switch to window {int}")
+    public void switchToWindow(int targetWindow) {
+        switchTo().window(targetWindow-1, Duration.ofSeconds(5));
+        System.out.println("Yeni sayfa url: "+ url());
 
     }
 }
