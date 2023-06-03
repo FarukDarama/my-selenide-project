@@ -32,6 +32,12 @@ public class TestCenterPage {
     public  SelenideElement sonuc =$(By.xpath("//*[@id='result']"));
    //frame elements
     public SelenideElement backButton =$(By.xpath("//a[@type='button']"));
+    //Actions elements
+    public SelenideElement kaynak =$("#draggable");
+    public SelenideElement hedef =$("#droppable");
+    //EXPLICITWAIT ELEMENTS
+    public SelenideElement startButton =$(By.xpath("//div[@id='start']"));
+    public SelenideElement helloWorld =$(By.xpath("//h4[text()='Hello World!']"));
 
 
 
