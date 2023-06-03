@@ -39,6 +39,9 @@ public class TestCenterPage {
     public SelenideElement startButton =$(By.xpath("//div[@id='start']"));
     public SelenideElement helloWorld =$(By.xpath("//h4[text()='Hello World!']"));
 
+    //JS EXECUTOR
+    public SelenideElement amazonFooter=$(By.xpath("//span[@class='action-inner']"));
+
 
 
 

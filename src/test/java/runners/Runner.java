@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
         monochrome=true,
         features = "./src/test/resources/features",//features folder path
         glue = {"stepdefinitions"},//stepdefinitions path
-        tags = "@screenshot",
+        tags = "@scrollwithjs",
         dryRun = false
 
 
